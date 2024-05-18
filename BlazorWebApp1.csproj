@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\app.css" />
+    <None Include="wwwroot\css\screens.css" />
+    <None Include="wwwroot\css\tailwind.css" />
+    <None Include="wwwroot\css\utilities.css" />
+    <None Include="wwwroot\css\variants.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.2" />
     <PackageReference Include="MudBlazor" Version="6.19.1" />
   </ItemGroup>

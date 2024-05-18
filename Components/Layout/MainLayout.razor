@@ -6,9 +6,13 @@
 
 <MudLayout>
 	<MudAppBar>
+		<div class="d-flex flex-row gap-4">
+		</div>
 		<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(() => DrawerToggle())" />
 		Randy Blazor
-		<MudSwitch Color="Color.Primary" @bind-Checked="@_isDarkMode" Label="Toggle Dark Mode" />
+		<div class="flex-grow-1"></div>
+		<MudSwitch class="ml-auto" Color="Color.Primary" @bind-Value="@_isDarkMode" Label="Toggle Dark Mode" />
+
 	</MudAppBar>
 	<MudDrawer @bind-Open="@_drawerOpen">
 		<NavMenu />

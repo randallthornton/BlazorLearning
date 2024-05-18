@@ -1,3 +1,4 @@
+using BlazorWebApp1.APIs;
 using BlazorWebApp1.Components;
 using MudBlazor.Services;
 
@@ -9,6 +10,9 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddMudServices();
+
+builder.Services.AddHttpClient();
+builder.Services.AddTransient<PublicApisService>();
 
 var app = builder.Build();
 
