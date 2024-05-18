@@ -6,18 +6,18 @@ namespace BlazorWebApp1.APIs;
 public class PublicApisService
 {
 	HttpClient client;
-	string meowFactsUrl = "https://meowfacts.herokuapp.com/?count=3";
+	string meowFactsUrl = "https://meowfacts.herokuapp.com/";
 
 	public PublicApisService(HttpClient client)
 	{
 		this.client = client;
 	}
 
-	public async Task<CatFactsResponse?> GetMeowFacts()
+	public async Task<CatFactsResponse?> GetMeowFacts(int count)
 	{
 		// call 
 
-		var result = await client.GetAsync(meowFactsUrl);
+		var result = await client.GetAsync(meowFactsUrl + $"?count={count}");
 
 		result.EnsureSuccessStatusCode();
 
@@ -29,5 +29,5 @@ public class PublicApisService
 
 public class CatFactsResponse
 {
-    public string[] Data { get; set; }
+	public string[] Data { get; set; }
 }

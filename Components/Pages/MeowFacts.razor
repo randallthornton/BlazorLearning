@@ -3,6 +3,8 @@
 @using BlazorWebApp1.APIs
 @inject PublicApisService publicApisService
 
+<PageTitle>Cat Facts</PageTitle>
+
 <div class="pa-8 d-flex flex-column gap-8">
 
 	<h3>MeowFacts</h3>
@@ -12,14 +14,22 @@
 		<MudLink Href="https://meowfacts.herokuapp.com">https://meowfacts.herokuapp.com</MudLink>
 	</div>
 
+	<MudNumericField Label="How many facts should we load?" @bind-Value="numberOfCatFacts"></MudNumericField>
 
-	<MudButton OnClick="@(async () => await UpdateCats())" Color="Color.Primary" Variant="Variant.Filled">Load cats</MudButton>
+	<MudButton OnClick="@(async () => await UpdateCats(numberOfCatFacts))" Color="Color.Primary" Variant="Variant.Filled">Load Cat Facts</MudButton>
 
 	@if (catFactsResponse != null)
 	{
 		@foreach (var fact in catFactsResponse.Data)
 		{
 			<MudPaper Class="pa-4">@fact</MudPaper>
+		}
+	}
+	else if (loadingCatFcats)
+	{
+		@foreach (var _ in Enumerable.Range(0, numberOfCatFacts))
+		{
+			<MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="56px"></MudSkeleton>
 		}
 	}
 	else
@@ -31,9 +41,15 @@
 @code {
 
 	CatFactsResponse? catFactsResponse;
+	int numberOfCatFacts = 3;
+	bool loadingCatFcats = false;
 
-	async Task UpdateCats()
+	async Task UpdateCats(int catFactsCount)
 	{
-		catFactsResponse = await publicApisService.GetMeowFacts();
+		loadingCatFcats = true;
+
+		catFactsResponse = await publicApisService.GetMeowFacts(catFactsCount);
+
+		loadingCatFcats = false;
 	}
 }

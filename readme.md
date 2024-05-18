@@ -1,11 +1,19 @@
-# Debugging
+# Blazor Learning
 
-To get tailwindcss working with visual studio, we have to run the following command before we begin debugging.
+## Production
 
-```cmd
-npx tailwindcss -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css --watch --minify
+[Link in GCP](https://blazor-learning-hzq2w5dm3q-uc.a.run.app/MeowFacts)
+
+## Build with Podman
+
+Substitude `podman` with `docker` if you use Docker instead.
+
+Use your own container registry as well, with your own login
+
+```powershell
+podman build . -t blazor-learning
 ```
 
-This will watch the html files for the additional css classes and have tailwind rebuild the app.min.css file served via wwwroot.
-
-I'm using a VS extension for giving me tailwind intellisense https://github.com/theron-wang/VS2022-Editor-Support-for-Tailwind-CSS/blob/main/Getting-Started.md
+```powershell
+podman push blazor-learning docker://docker.io/randongg/blazor-learning:latest
+```

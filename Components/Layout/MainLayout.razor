@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudBlazor.MudThemeProvider @bind-IsDarkMode="@_isDarkMode" />
+<MudBlazor.MudThemeProvider Theme="_theme" @bind-IsDarkMode="@_isDarkMode" />
 <MudBlazor.MudDialogProvider />
 <MudBlazor.MudSnackbarProvider />
 
@@ -25,7 +25,20 @@
 @code {
 	bool _drawerOpen = false;
 	bool _isDarkMode = true;
-	MudTheme _theme = new();
+	MudTheme _theme = new()
+		{
+			Palette = new PaletteLight()
+			{
+				Primary = Colors.Blue.Default,
+				Secondary = Colors.Green.Darken1,
+				AppbarBackground = Colors.Blue.Darken1
+			},
+			PaletteDark = new PaletteDark()
+			{
+				Primary = Colors.Blue.Lighten1,
+				Secondary = Colors.Green.Default,
+			},
+		};
 
 	public void DrawerToggle()
 	{
